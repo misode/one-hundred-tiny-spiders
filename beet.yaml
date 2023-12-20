@@ -1,0 +1,21 @@
+name: One Hundred Tiny Spiders
+author: Misode
+version: 1.0.0
+
+require:
+  - bolt
+
+data_pack:
+  name: "one-hundred-tiny-spiders"
+  pack_format: 27
+  description: [
+    { text: "{{project_name}}", color: "green" },
+    { text: "\nv{{project_version}} by {{project_author}}.", color: "dark_gray" }
+  ]
+  load:
+    data: src
+
+pipeline:
+  - mecha
+
+output: out

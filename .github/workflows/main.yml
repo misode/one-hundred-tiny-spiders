@@ -1,0 +1,41 @@
+name: Build data pack
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.2.1
+        with:
+          virtualenvs-in-project: true
+
+      - name: Setup cache
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-root
+
+      - name: Build data pack
+        run: poetry run beet build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'one-hundred-tiny-spiders.zip'
+          path: ${{ github.workspace }}/out/one-hundred-tiny-spiders/

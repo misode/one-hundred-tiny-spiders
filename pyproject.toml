@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "one-hundred-tiny-spiders"
+version = "0.1.0"
+description = "One hundred tiny spiders will spawn when killing a spider."
+authors = ["Misode <misoloo64@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/misode/one-hundred-tiny-spiders"
+repository = "https://github.com/misode/one-hundred-tiny-spiders"
+classifiers = [
+    "Private :: Do Not Publish"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.dev-dependencies]
+black = { version = "^21.12b0", allow-prereleases = true }
+beet = "^0.100.0"
+bolt = "^0.44.0"
+mecha = "^0.85.2"
+
+[tool.beet]
+output = "build"
+extend = ["beet.yaml"]
+
+[[tool.beet.pipeline]]
+output = "build"
+extend = ["beet.yaml"]
+data_pack.zipped = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

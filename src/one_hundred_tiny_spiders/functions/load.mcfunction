@@ -1,0 +1,1 @@
+scoreboard objectives add one_hundred_tiny_spiders dummy
