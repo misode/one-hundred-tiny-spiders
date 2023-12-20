@@ -37,5 +37,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: 'one-hundred-tiny-spiders.zip'
+          name: 'one-hundred-tiny-spiders'
           path: ${{ github.workspace }}/out/one-hundred-tiny-spiders/
